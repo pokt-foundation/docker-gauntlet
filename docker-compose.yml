@@ -2,28 +2,26 @@ services:
   db:
     image: mysql:8.0.28
     environment: 
-      MYSQL_ROOT_PASSWORD: jsal382!,2
+      MYSQL_ROOT_PASSWORD: jsal382!2
     cpu_count: '2'
-    mem_limit: '16M'
-    ports:
-      - "3306:3306"
+    mem_limit: '1G'
+    expose:
+      - 3306
     volumes:  
-      "/var/lib/db:/var/lib/db:cached"
+      - services-db:/var/lib/db:cached
     networks:
       - backend
 
-  nodeApp:
+  nodeapp:
     build: ./nodeApp
-    expose: 80
+    ports:
+      - 80:8080
     networks:
       - frontend
 
 networks:
-  default:
-    name: frontend
+  frontend:
   backend:
-    driver: none
 
-
-
-  
+volumes:
+  services-db:
