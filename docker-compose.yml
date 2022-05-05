@@ -4,7 +4,7 @@ services:
     environment: 
       MYSQL_ROOT_PASSWORD: jsal382!2
     cpu_count: '2'
-    mem_limit: '1G'
+    mem_limit: '16M'
     expose:
       - 3306
     volumes:  
